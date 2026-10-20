@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RE:DAY</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F7F5EF;--card:#FFFEFB;--ink:#243C53;--sage:#648B70;--muted:#6b7b8a;--line:#e3e0d6;--warn:#b0623a;--warnbg:#f8eadf;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17222d;--card:#1f2d3a;--ink:#eef1ee;--sage:#86b095;--muted:#9aa9b5;--line:#33444f;--warn:#e0a07a;--warnbg:#3a2c25;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17222d;--card:#1f2d3a;--ink:#eef1ee;--sage:#86b095;--muted:#9aa9b5;--line:#33444f;--warn:#e0a07a;--warnbg:#3a2c25;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.app{max-width:640px;margin:0 auto;padding:18px 14px 60px}
+h1{font-size:26px;margin:0}h2{font-size:17px;margin:0 0 10px}
+.sub{color:var(--muted);font-size:13px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px}
+.btn{font:inherit;font-weight:600;color:var(--sage);background:transparent;border:1.5px solid var(--sage);border-radius:12px;padding:9px 14px;cursor:pointer}
+.btn.fill{background:var(--sage);color:#fff}.btn.sm{padding:5px 10px;font-size:13px;border-radius:9px}.btn.full{width:100%;padding:13px;font-size:16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+label{display:flex;flex-direction:column;font-size:12px;color:var(--muted);gap:3px;flex:1;min-width:110px}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px;width:100%}
+.seg{display:flex;gap:6px;margin-bottom:10px}.seg button{flex:1;font:inherit;padding:10px 4px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.seg button.on{border-color:var(--sage);background:var(--sage);color:#fff;font-weight:600}
+.item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0}.item b{display:block}.acts{display:flex;gap:6px}
+.msg{background:var(--card);border:1px solid var(--sage);border-radius:12px;padding:10px 12px;margin-bottom:14px;font-size:14px}.msg.err{border-color:var(--warn);color:var(--warn)}
+.tl{position:relative}
+.ev{display:flex;gap:10px;margin-bottom:10px}
+.dot{width:12px;height:12px;border:2px solid var(--ink);border-radius:50%;margin-top:18px;flex:none;background:var(--bg)}
+.ev .c{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:10px;align-items:center}
+.ev.lock .c{opacity:.8}.ev.done .c{opacity:.5;text-decoration:line-through}
+.ev .t{flex:1}.ev .t b{font-size:15px}.ev .t span{display:block;color:var(--muted);font-size:13px}
+.tag{font-size:11px;font-weight:700;padding:2px 7px;border-radius:99px;background:var(--bg);border:1px solid var(--line);margin-left:6px}
+.brk{margin:0 0 10px 22px;color:var(--muted);font-size:13px}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--sage);flex:none;padding:0}
+.post{background:var(--warnbg);border-color:var(--warn)}.post h2{color:var(--warn)}
+.pg{display:none}.pg.on{display:block}.hid{display:none!important}
+.top .acts{flex-wrap:wrap;justify-content:flex-end}
+.bar{height:6px;background:var(--line);border-radius:9px;margin-bottom:14px;overflow:hidden}.bar i{display:block;height:100%;background:var(--sage);width:0;transition:width .3s}
+.hero{padding-top:34px}.hero h1{font-size:44px;letter-spacing:1px}.tagl{font-size:18px;color:var(--sage);font-weight:600;margin:6px 0 18px}
+.hero ul{margin:8px 0 0;padding-left:20px}.hero li{margin-bottom:6px}
+.nav{display:flex;gap:10px;margin-top:6px}.nav .btn{flex:1;padding:13px;font-size:16px}
+html:root:not([data-theme="zz"]){--bg:#F7F5EF;--card:#FFFDF8;--ink:#243C53;--sage:#648B70;--muted:#667a8c;--line:#e6e2d6;--warn:#a5603a;--warnbg:#f6ece2;color-scheme:light}
+body{font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.app{padding:24px 18px 72px}
+h1,h2{color:var(--ink);font-weight:800;letter-spacing:-.01em}
+h2{font-size:18px;margin-bottom:12px}
+.card{border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 1px 2px rgba(36,60,83,.04),0 6px 18px rgba(36,60,83,.04)}
+.btn{border-radius:14px;padding:11px 18px;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;transition:background .15s,transform .05s}
+.btn:active{transform:scale(.98)}
+.btn.sm{border-radius:10px;padding:6px 12px;border-color:var(--line);color:var(--ink)}
+.btn.fill{background:var(--sage);border-color:var(--sage);color:#fff}
+.btn.fill:hover{background:#587d63}
+.btn.full{border-radius:16px;padding:15px}
+#nNext{background:var(--ink);border-color:var(--ink);color:#fff}
+input,select{border-radius:12px;padding:11px;font-size:16px}
+input[type=checkbox]{border-radius:6px}
+input:focus,select:focus,.btn:focus-visible,.seg button:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+.seg button{border-radius:12px;padding:12px 4px;font-weight:700}
+.seg button.on{background:var(--sage);border-color:var(--sage)}
+.ev .c{border-radius:16px;padding:14px}
+.dot{border-color:var(--sage)}
+.tag{background:#e9efe9;color:var(--ink);border-color:#d3dfd5}
+.msg{border-radius:14px;background:#edf3ee}
+.item{padding:12px 0}
+.hero{padding-top:48px;text-align:center}.hero .card{text-align:left}
+.hero h1{font-size:48px}
+#print{display:none}
+@media print{
+ .app{display:none}#print{display:block;color:#000;background:#fff;font-family:system-ui,sans-serif}
+ @page{size:A4;margin:16mm}
+ #print h1{font-size:22px;color:#243C53}#print table{width:100%;border-collapse:collapse;margin-top:10px}
+ #print td,#print th{border-bottom:1px solid #ccc;padding:7px 6px;text-align:left;font-size:13px}
+ #print th{background:#eef2ee}#print tr{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="app">
+ <div id="prog" class="hid"><div class="top" style="margin-bottom:8px;align-items:center"><b style="font-size:20px">RE:DAY</b><span class="sub" id="progT"></span></div><div class="bar"><i id="barI"></i></div></div>
+ <div id="msg" class="msg hid"></div>
+ <div class="pg hero on" data-pg="0">
+  <h1>RE:DAY</h1>
+  <div class="tagl">Plan your day. Reset without guilt.</div>
+  <div class="card"><p style="margin:0 0 8px">RE:DAY builds a realistic daily schedule around your school, coaching and activities, and puts your most important work in the time you focus best.</p>
+   <ul><li>Add your fixed commitments</li><li>List your tasks and when you focus best</li><li>Get a timetable, and reset it whenever plans change</li></ul></div>
+  <button class="btn fill full" id="bStart">Plan My Day</button>
+ </div>
+
+ <div class="card pg" data-pg="2">
+  <h2>When do you focus best?</h2>
+  <div class="seg" id="peak"><button data-p="morning">Morning</button><button data-p="evening">Evening</button><button data-p="night">Night</button></div>
+  <div class="row"><label>Wake up<input type="time" id="ds"></label><label>Bedtime<input type="time" id="de"></label></div><div class="sub" id="sleepInfo"></div>
+ </div>
+
+ <div class="card pg" data-pg="1">
+  <h2>Getting ready</h2>
+  <div class="row"><label>How long do you need to get ready? (min)<input type="number" id="gr" min="0" step="5" value="45"></label></div>
+  <div class="sub">Travel is set on each commitment below. Getting ready and travel are added to your day automatically.</div>
+ </div>
+ <div class="card pg" data-pg="1">
+  <h2>Fixed commitments</h2>
+  <div class="sub" style="margin-bottom:8px">School, coaching, travel, clubs: anything that can’t move.</div>
+  <div class="row"><label style="flex:2 1 160px">Name<input id="cn" placeholder="School, coaching…"></label><label>Start<input type="time" id="cs"></label><label>End<input type="time" id="ce"></label><label>Travel each way (min)<input type="number" id="ct" min="0" step="5" value="0"></label></div>
+  <div class="acts"><button class="btn fill sm" id="cAdd">Add commitment</button><button class="btn sm hid" id="cCancel">Cancel</button></div>
+  <div id="cList" style="margin-top:8px"></div>
+ </div>
+
+ <div class="card pg" data-pg="2">
+  <h2>My tasks</h2>
+  <div class="row"><label style="flex:2 1 160px">Task<input id="tn" placeholder="Physics study"></label>
+   <label>Priority<select id="tp"><option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option></select></label></div>
+  <div class="row"><label>Duration (min)<input type="number" id="td" min="5" step="5" value="60"></label><label>Deadline<input type="date" id="tdl"></label></div>
+  <div class="acts"><button class="btn fill sm" id="tAdd">Add task</button><button class="btn sm hid" id="tCancel">Cancel</button></div>
+  <div id="tList" style="margin-top:8px"></div>
+ </div>
+
+ <div class="card pg" data-pg="3"><h2>Ready to plan?</h2><div id="sum"></div><div class="sub" style="margin-top:10px">Your fixed commitments stay exactly where they are.</div></div>
+ <div class="pg" data-pg="3"><button class="btn fill full" id="bGen" style="margin-bottom:10px">Generate My Schedule</button><button class="btn full hid" id="bView" style="margin-bottom:10px">View my current schedule</button></div>
+
+ <div id="resetCard" class="card pg hid" data-pg="4">
+  <h2>Reset my day</h2>
+  <div class="sub" style="margin-bottom:8px">Plans changed? Tick what you’ve finished, then reschedule the rest. Fixed commitments stay put.</div>
+  <div class="row"><label>Reschedule from<input type="time" id="rFrom"></label></div>
+  <div class="sub">Lost time? Block it out (optional)</div>
+  <div class="row"><label>From<input type="time" id="bS"></label><label>Until<input type="time" id="bE"></label><label style="flex:2 1 140px">Reason<input id="bN" placeholder="Unexpected visit"></label></div>
+  <button class="btn fill sm" id="bReset">Reset my day</button>
+ </div>
+
+ <div id="dayWrap" class="pg" data-pg="4">
+  <div class="top" style="margin-bottom:8px"><div><h2 style="margin:0">My day</h2><div class="sub" id="dayInfo"></div></div><div class="acts"><button class="btn" id="bPrint">Print schedule</button><button class="btn" id="bOpenReset">Reset my day</button></div></div>
+  <div class="tl" id="tl"></div>
+  <div id="post"></div>
+ </div>
+ <div class="nav hid" id="nav"><button class="btn" id="nBack">Back</button><button class="btn fill" id="nNext">Continue</button></div>
+</div>
+<div id="print"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+let S={commits:[],tasks:[],busy:[],peak:'night',ds:'06:30',de:'22:30',ready:45,notes:[],stat:null,sched:null,post:[]};
+let editC=-1,editT=-1;
+const PR={high:0,medium:1,low:2},PL=['P1','P2','P3'];
+const WIN={morning:[360,720],evening:[960,1260],night:[1200,1410]};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tm=s=>{const [a,b]=s.split(':');return +a*60+ +b};
+const fm=m=>{const h=Math.floor(m/60),mi=m%60;return ((h+11)%12+1)+':'+String(mi).padStart(2,'0')+' '+(h>=12?'PM':'AM')};
+const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const dueTxt=d=>{if(!d)return 'No deadline';const n=Math.round((Date.parse(d)-Date.parse(today()))/864e5);return n<0?'Overdue':n===0?'Due today':n===1?'Due tomorrow':'Due '+new Date(d+'T00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})};
+const dueN=d=>d?Math.round((Date.parse(d)-Date.parse(today()))/864e5):99;
+function save(){try{localStorage.setItem('reday1',JSON.stringify(S))}catch(e){}}
+function load(){try{const x=localStorage.getItem('reday1');if(x)S=Object.assign(S,JSON.parse(x))}catch(e){}}
+function say(t,err){const m=$('#msg');m.textContent=t;m.className='msg'+(err?' err':'');m.scrollIntoView({block:'nearest',behavior:'smooth'})}
+
+const sub=(list,s,e)=>{const o=[];for(const [a,b] of list){if(e<=a||s>=b)o.push([a,b]);else{if(s>a)o.push([a,s]);if(e<b)o.push([e,b])}}return o};
+const inter=(list,s,e)=>list.map(([a,b])=>[Math.max(a,s),Math.min(b,e)]).filter(([a,b])=>b>a);
+
+function buildOld(from,keep){
+ const ds=tm(S.ds),de=tm(S.de);
+ const kept=keep&&S.sched?S.sched.filter(b=>b.type==='task'&&b.done):[];
+ const doneMin={};kept.forEach(b=>doneMin[b.tid]=(doneMin[b.tid]||0)+b.e-b.s);
+ const fixed=[...S.commits.map(c=>({type:'commit',name:c.name,s:tm(c.s),e:tm(c.e)})),...S.busy.map(b=>({type:'busy',name:b.name,s:tm(b.s),e:tm(b.e)})),...kept];
+ let free=[[Math.max(ds,from),de]];
+ fixed.forEach(b=>free=sub(free,b.s,b.e));
+ const list=S.tasks.map(t=>({t,rem:t.dur-(doneMin[t.id]||0)})).filter(x=>x.rem>0);
+ list.sort((a,b)=>{const ua=dueN(a.t.deadline)<=0?0:1,ub=dueN(b.t.deadline)<=0?0:1;
+  return ua-ub||PR[a.t.prio]-PR[b.t.prio]||(a.t.deadline||'9').localeCompare(b.t.deadline||'9')});
+ let [p0,p1]=WIN[S.peak];p1=Math.min(p1,de);
+ const out=[],post=[];
+ for(const {t,rem:r0} of list){
+  let rem=r0;
+  while(rem>0){
+   const cap=rem>90&&rem-90<25?rem-25:90,need=Math.min(rem,25);
+   let slot=null;
+   for(const c of [inter(free,p0,p1),free]){slot=c.find(([a,b])=>b-a>=need);if(slot)break}
+   if(!slot)break;
+   const len=Math.min(rem,cap,slot[1]-slot[0]),s=slot[0];
+   out.push({type:'task',tid:t.id,name:t.name,prio:t.prio,s,e:s+len,done:false});
+   free=sub(free,s,Math.min(s+len+10,slot[1]));rem-=len;
+  }
+  if(rem>0)post.push({tid:t.id,rem});
+ }
+ S.sched=[...fixed,...out].sort((a,b)=>a.s-b.s);S.post=post;
+ return {placed:out.length,post:post.length};
+}
+
+function generate(){
+ if(!S.tasks.length&&!S.commits.length){say('Add at least one commitment or task first.',1);return}
+ if(tm(S.de)<=tm(S.ds)){say('Your day must end after it starts.',1);return}
+ S.busy=[];const r=build(tm(S.ds),false);render();go(4);
+ say(r.post?`Schedule ready. ${r.post} task${r.post>1?'s':''} didn’t fit and ${r.post>1?'are':'is'} listed under Postponed.`:'Schedule ready. Focus blocks are placed in your '+S.peak+' window with short breaks.');
+}
+function doReset(){
+ if(!S.sched){say('Generate a schedule first.',1);return}
+ const from=$('#rFrom').value?tm($('#rFrom').value):0,bs=$('#bS').value,be=$('#bE').value;
+ if(bs||be){if(!bs||!be||tm(be)<=tm(bs)){say('For lost time, give a start and an end (end after start).',1);return}
+  S.busy.push({name:$('#bN').value.trim()||'Unavailable',s:bs,e:be});}
+ const r=build(from,true);render();$('#bS').value=$('#be')?.value||'';$('#bS').value='';$('#bE').value='';$('#bN').value='';
+ $('#resetCard').classList.add('hid');
+ say(r.post?`Day updated. ${r.post} task${r.post>1?'s need':' needs'} postponing — nothing was squeezed in.`:'Day updated. Everything left fits, and your fixed commitments haven’t moved.');
+}
+
+function render(){
+ $('#peak').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.p===S.peak));
+ $('#ds').value=S.ds;$('#de').value=S.de;$('#gr').value=S.ready;{const sl=1440-tm(S.de)+tm(S.ds);$('#sleepInfo').textContent=`Sleep window: about ${(sl/60).toFixed(1)} hours`+(sl<420?'. Try to keep at least 7–8 hours.':'')}
+ $('#cList').innerHTML=S.commits.length?S.commits.map((c,i)=>`<div class="item"><div><b>${esc(c.name)}</b><span class="sub">${fm(tm(c.s))} – ${fm(tm(c.e))}${c.tr?` · ${c.tr} min travel each way`:''}</span></div><div class="acts"><button class="btn sm" data-a="ec" data-i="${i}">Edit</button><button class="btn sm" data-a="dc" data-i="${i}">✕</button></div></div>`).join(''):'<div class="sub">None yet.</div>';
+ $('#tList').innerHTML=S.tasks.length?S.tasks.map((t,i)=>`<div class="item"><div><b>${esc(t.name)}<span class="tag">${PL[PR[t.prio]]}</span></b><span class="sub">${t.dur} min · ${dueTxt(t.deadline)}</span></div><div class="acts"><button class="btn sm" data-a="et" data-i="${i}">Edit</button><button class="btn sm" data-a="dt" data-i="${i}">✕</button></div></div>`).join(''):'<div class="sub">None yet.</div>';
+ const has=!!S.sched;
+ if(has)renderDay();
+ save();
+}
+function renderDay(){
+ const sc=S.sched,cnt={},idx={};
+ sc.forEach(b=>{if(b.type==='task')cnt[b.tid]=(cnt[b.tid]||0)+1});
+ let h='',prev=null;
+ sc.forEach((b,i)=>{
+  if(prev){const g=b.s-prev.e;if(prev.type==='task'&&b.type==='task'&&g>0&&g<=15)h+=`<div class="brk">☕ Break · ${g} min</div>`;else if(g>=20)h+=`<div class="brk">🌿 Free time · ${g} min</div>`}
+  prev=b;
+  const lbl=b.type==='task'&&cnt[b.tid]>1?` (part ${(idx[b.tid]=(idx[b.tid]||0)+1)} of ${cnt[b.tid]})`:'';
+  const tag=b.type==='task'?`<span class="tag">${PL[PR[b.prio]]}</span>`:'';
+  const left=b.type==='task'?`<input type="checkbox" data-a="done" data-i="${i}" ${b.done?'checked':''} aria-label="Done">`:`<span>${ICON[b.type]||'🔒'}</span>`;
+  const more=b.type==='task'&&!b.done?`<button class="btn sm" data-a="more" data-t="${b.tid}" title="This took longer">+15</button>`:'';
+  h+=`<div class="ev ${b.type==='task'?(b.done?'done':''):'lock'}"><div class="dot"></div><div class="c">${left}<div class="t"><b>${esc(b.name)}${lbl}${tag}</b><span>${fm(b.s)} – ${fm(b.e)} · ${b.e-b.s} min</span></div>${more}</div></div>`;
+ });
+ $('#tl').innerHTML=h;
+ const tasks=sc.filter(b=>b.type==='task');
+ $('#dayInfo').textContent=`${tasks.length} focus block${tasks.length===1?'':'s'} · ${tasks.filter(b=>!b.done).length} remaining`;
+ $('#post').innerHTML=S.post.length?`<div class="card post"><h2>Postponed — not enough time today</h2>${S.post.map(p=>{const t=S.tasks.find(x=>x.id===p.tid);if(!t)return'';return `<div class="item"><div><b>${esc(t.name)}</b><span class="sub">${p.rem} min left · ${dueTxt(t.deadline)}${dueN(t.deadline)<=0?' — consider asking for more time':''}</span></div></div>`}).join('')}<div class="sub">Move these to tomorrow, or free up time and tap Reset my day.</div></div>`:'';
+ const rows=sc.map(b=>`<tr><td>${fm(b.s)} – ${fm(b.e)}</td><td>${esc(b.name)}</td><td>${b.type==='task'?'Task '+PL[PR[b.prio]]:b.type==='busy'?'Unavailable':'Fixed'}</td></tr>`).join('');
+ const pp=S.post.map(p=>{const t=S.tasks.find(x=>x.id===p.tid);return t?`<li>${esc(t.name)} — ${p.rem} min (${dueTxt(t.deadline)})</li>`:''}).join('');
+ $('#print').innerHTML=`<h1>RE:DAY — ${new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</h1><div>Peak focus time: ${S.peak}</div><table><tr><th>Time</th><th>Activity</th><th>Type</th></tr>${rows}</table>${pp?`<h3>Postponed</h3><ul>${pp}</ul>`:''}`;
+}
+
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-a],[data-p]');if(!b)return;
+ if(b.dataset.p){S.peak=b.dataset.p;render();return}
+ const a=b.dataset.a,i=+b.dataset.i;
+ if(a==='dc'){S.commits.splice(i,1);render()}
+ if(a==='dt'){S.tasks.splice(i,1);render()}
+ if(a==='ec'){editC=i;const c=S.commits[i];$('#cn').value=c.name;$('#cs').value=c.s;$('#ce').value=c.e;$('#ct').value=c.tr||0;$('#cAdd').textContent='Save changes';$('#cCancel').classList.remove('hid')}
+ if(a==='et'){editT=i;const t=S.tasks[i];$('#tn').value=t.name;$('#tp').value=t.prio;$('#td').value=t.dur;$('#tdl').value=t.deadline||'';$('#tAdd').textContent='Save changes';$('#tCancel').classList.remove('hid')}
+ if(a==='done'){S.sched[i].done=b.checked;render()}
+ if(a==='more'){const t=S.tasks.find(x=>x.id===b.dataset.t);if(t){t.dur+=15;save();say(`Added 15 min to “${t.name}”. Tap Reset my day to refit the rest of your schedule.`)}}
+});
+function clearC(){editC=-1;$('#cn').value='';$('#cs').value='';$('#ce').value='';$('#ct').value=0;$('#cAdd').textContent='Add commitment';$('#cCancel').classList.add('hid')}
+function clearT(){editT=-1;$('#tn').value='';$('#td').value=60;$('#tp').value='medium';$('#tdl').value=today();$('#tAdd').textContent='Add task';$('#tCancel').classList.add('hid')}
+$('#cCancel').onclick=clearC;$('#tCancel').onclick=clearT;
+$('#cAdd').onclick=()=>{
+ const n=$('#cn').value.trim(),s=$('#cs').value,e=$('#ce').value;
+ if(!n||!s||!e){say('Give the commitment a name, start and end time.',1);return}
+ if(tm(e)<=tm(s)){say('End time must be after the start time.',1);return}
+ const c={name:n,s,e,tr:Math.max(0,+$('#ct').value||0)};if(editC>=0)S.commits[editC]=c;else S.commits.push(c);
+ clearC();render();say('Commitment saved.');
+};
+$('#tAdd').onclick=()=>{
+ const n=$('#tn').value.trim(),d=+$('#td').value;
+ if(!n||!(d>=5)){say('Give the task a name and a duration of at least 5 minutes.',1);return}
+ const o={id:editT>=0?S.tasks[editT].id:'t'+Date.now()+Math.floor(Math.random()*99),name:n,prio:$('#tp').value,dur:d,deadline:$('#tdl').value};
+ if(editT>=0)S.tasks[editT]=o;else S.tasks.push(o);
+ clearT();render();say('Task saved.');
+};
+$('#bGen').onclick=generate;
+$('#bReset').onclick=doReset;
+$('#bOpenReset').onclick=()=>{const r=$('#resetCard');r.classList.toggle('hid');const n=new Date();$('#rFrom').value=String(n.getHours()).padStart(2,'0')+':'+String(Math.ceil(n.getMinutes()/5)*5%60).padStart(2,'0');if(Math.ceil(n.getMinutes()/5)*5>=60)$('#rFrom').value=String((n.getHours()+1)%24).padStart(2,'0')+':00';r.scrollIntoView({behavior:'smooth',block:'start'})};
+$('#bPrint').onclick=()=>{if(!S.sched){say('Generate a schedule first, then print it.',1);return}try{window.print()}catch(e){say('Printing isn’t available here. Try opening the page in your browser.',1)}};
+$('#ds').onchange=()=>{S.ds=$('#ds').value||'06:00';save()};
+$('#de').onchange=()=>{S.de=$('#de').value||'23:30';save()};
+const ICON={commit:'🔒',busy:'⏸',travel:'🚌',ready:'☀️',meal:'🍽️',rest:'🌙'};
+function build(from,keep){
+ const ds=tm(S.ds),de=tm(S.de),notes=[],WD=30;
+ const kept=keep&&S.sched?S.sched.filter(b=>b.type==='task'&&b.done):[];
+ const keptM=keep&&S.sched?S.sched.filter(b=>b.type==='meal'&&b.s<from):[];
+ const doneMin={};kept.forEach(b=>doneMin[b.tid]=(doneMin[b.tid]||0)+b.e-b.s);
+ const cs=S.commits.map(c=>({name:c.name,s:tm(c.s),e:tm(c.e),tr:c.tr||0})).sort((a,b)=>a.s-b.s);
+ const fixed=[];
+ cs.forEach((c,i)=>{
+  fixed.push({type:'commit',name:c.name,s:c.s,e:c.e});
+  const n=cs[i+1];
+  if(i===0&&c.tr)fixed.push({type:'travel',name:'Travel to '+c.name,s:c.s-c.tr,e:c.s});
+  if(!n){if(c.tr)fixed.push({type:'travel',name:'Travel home from '+c.name,s:c.e,e:c.e+c.tr});return}
+  const g=n.s-c.e;
+  if(g<=0||!(c.tr+n.tr))return;
+  if(g>=c.tr+n.tr){if(c.tr)fixed.push({type:'travel',name:'Travel from '+c.name,s:c.e,e:c.e+c.tr});if(n.tr)fixed.push({type:'travel',name:'Travel to '+n.name,s:n.s-n.tr,e:n.s})}
+  else{fixed.push({type:'travel',name:'Travel to '+n.name,s:c.e,e:n.s});notes.push(`Tight gap between ${c.name} and ${n.name}: there’s barely room to travel, so nothing else is planned there.`)}
+ });
+ if(S.ready>0){
+  const first=cs.length?Math.min(...fixed.map(b=>b.s)):ds+S.ready,rs=cs.length?first-S.ready:ds;
+  fixed.push({type:'ready',name:'Get ready',s:rs,e:rs+S.ready});
+  if(rs<ds)notes.push(`To get ready and travel for ${cs[0].name}, you’d need to be up by ${fm(Math.max(rs,0))}, earlier than your wake-up time. Consider an earlier alarm.`);
+ }
+ S.busy.forEach(b=>fixed.push({type:'busy',name:b.name,s:tm(b.s),e:tm(b.e)}));
+ fixed.push({type:'rest',name:'Wind down & get ready for bed',s:de-WD,e:de});
+ const blocks=[...fixed,...kept,...keptM];
+ let free=[[Math.max(ds,from),de-WD]];
+ blocks.forEach(b=>free=sub(free,b.s,b.e));
+ const meals=[];
+ for(const [nm,w0,w1,d] of [['Lunch',720,840,30],['Dinner',1080,1230,45]]){
+  if(keptM.some(m=>m.name===nm))continue;
+  const sl=inter(free,w0,w1).find(([a,b])=>b-a>=d);
+  if(sl){meals.push({type:'meal',name:nm,s:sl[0],e:sl[0]+d});free=sub(free,sl[0],sl[0]+d)}
+  else if(w1>from)notes.push(`There’s no room for ${nm.toLowerCase()} in its usual time, so remember to eat something.`);
+ }
+ const totalFree=free.reduce((a,[x,y])=>a+y-x,0),budget=Math.min(300,Math.floor(totalFree*0.6));
+ const list=S.tasks.map(t=>({t,rem:t.dur-(doneMin[t.id]||0)})).filter(x=>x.rem>0);
+ list.sort((a,b)=>{const ua=dueN(a.t.deadline)<=0?0:1,ub=dueN(b.t.deadline)<=0?0:1;return ua-ub||PR[a.t.prio]-PR[b.t.prio]||(a.t.deadline||'9').localeCompare(b.t.deadline||'9')});
+ let [p0,p1]=WIN[S.peak];p1=Math.min(p1,de-WD);
+ const out=[],post=[];let used=0;
+ for(const {t,rem:r0} of list){
+  let rem=r0,why='space';
+  while(rem>0){
+   const left=budget-used;
+   if(left<Math.min(rem,25)){why='limit';break}
+   const cap=rem>75&&rem-75<25?rem-25:75,need=Math.min(rem,25);
+   let slot=null;
+   for(const c of [inter(free,p0,p1),free]){slot=c.find(([a,b])=>b-a>=need);if(slot)break}
+   if(!slot)break;
+   const len=Math.min(rem,cap,slot[1]-slot[0],left),s=slot[0],bk=len>60?15:10;
+   out.push({type:'task',tid:t.id,name:t.name,prio:t.prio,s,e:s+len,done:false});
+   free=sub(free,s,Math.min(s+len+bk,slot[1]));rem-=len;used+=len;
+  }
+  if(rem>0)post.push({tid:t.id,rem,why});
+ }
+ S.sched=[...blocks,...meals,...out].sort((a,b)=>a.s-b.s);S.post=post;S.notes=notes;S.stat={focus:used};
+ return {placed:out.length,post:post.length};
+}
+const _rd=renderDay;
+renderDay=function(){
+ _rd();
+ const nt=(S.notes||[]).map(n=>`<div class="sub" style="margin-bottom:6px">• ${esc(n)}</div>`).join('');
+ const why={limit:'Kept off today so your day stays balanced.',space:'There’s no free time left today.'};
+ const pl=S.post.map(p=>{const t=S.tasks.find(x=>x.id===p.tid);return t?`<div class="item"><div><b>${esc(t.name)}<span class="tag">${PL[PR[t.prio]]}</span></b><span class="sub">${p.rem} min moved to another day · ${dueTxt(t.deadline)}<br>${why[p.why||'space']}${dueN(t.deadline)<=0?' It’s due today, so consider asking for more time.':''}</span></div></div>`:''}).join('');
+ $('#post').innerHTML=(pl?`<div class="card post"><h2>Moved to another day</h2>${pl}<div class="sub">High-priority and urgent tasks come first. The rest are left out so you still get breaks, meals and sleep.</div></div>`:'')+(nt?`<div class="card"><h2>Good to know</h2>${nt}</div>`:'');
+ const f=S.sched.filter(b=>b.type==='task'&&!b.done).reduce((a,b)=>a+b.e-b.s,0);
+ $('#dayInfo').textContent+=` · ${(f/60).toFixed(1)} h of focus left`;
+};
+$('#gr').onchange=()=>{S.ready=Math.max(0,+$('#gr').value||0);save()};
+['#ds','#de'].forEach(s=>$(s).addEventListener('change',render));
+let cur=0;
+const TT=['','Fixed commitments','My tasks','Generate','My daily schedule'];
+function renderSum(){
+ const c=S.commits.slice().sort((a,b)=>tm(a.s)-tm(b.s));
+ $('#sum').innerHTML=`<div class="sub">Focus time: <b>${S.peak}</b> · Getting ready: ${S.ready} min · Day ${fm(tm(S.ds))} – ${fm(tm(S.de))}</div><h2 style="margin-top:12px">Commitments (${c.length})</h2>`+(c.map(x=>`<div class="item"><span>${esc(x.name)}${x.tr?` (+${x.tr} min travel each way)`:''}</span><span class="sub">${fm(tm(x.s))} – ${fm(tm(x.e))}</span></div>`).join('')||'<div class="sub">None added.</div>')+`<h2 style="margin-top:12px">Tasks (${S.tasks.length})</h2>`+S.tasks.map(t=>`<div class="item"><span>${esc(t.name)}<span class="tag">${PL[PR[t.prio]]}</span></span><span class="sub">${t.dur} min · ${dueTxt(t.deadline)}</span></div>`).join('');
+ $('#bView').classList.toggle('hid',!S.sched);
+}
+function go(n){
+ cur=n;$('#msg').classList.add('hid');
+ document.querySelectorAll('.pg').forEach(e=>e.classList.toggle('on',e.dataset.pg===String(n)));
+ $('#prog').classList.toggle('hid',n===0);
+ $('#progT').textContent=n?`Step ${n} of 4 · ${TT[n]}`:'';
+ $('#barI').style.width=(n*25)+'%';
+ $('#nav').classList.toggle('hid',n===0);
+ $('#nNext').classList.toggle('hid',n>=3);
+ if(n===3)renderSum();
+ window.scrollTo(0,0);
+}
+$('#bStart').onclick=()=>go(1);
+$('#bView').onclick=()=>{if(S.sched)go(4)};
+$('#nBack').onclick=()=>go(cur-1);
+$('#nNext').onclick=()=>{
+ if(cur===2&&!S.tasks.length){say('Add at least one task to continue.',1);return}
+ go(cur+1);
+};
+load();$('#tdl').value=today();render();go(0);
+</script>
+</body>
+</html>
